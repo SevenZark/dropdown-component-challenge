@@ -1,7 +1,7 @@
 # Dropdown Component Challenge
 This exercise is mainly about styling, semantic/accessible JSX, and React basics. Your task is to create the design in the design1.png file in App.js
 
-1. Must create and use a reusable dropdown component.
+1. Must create and use a reusable dropdown component using React functional components and hooks where necessary.
 2. Use the options `groupOptions` for the first dropdown, and `singerOptions` for the second dropdown. Note: as shown in the design, the first item in the second must read "-Select an option-" and cannot be selectable.
 3. Match the styling and placement of the design. Font is Roboto.
 
