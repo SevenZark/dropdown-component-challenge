@@ -2,9 +2,7 @@ import React from 'react';
 
 // App
 import useHomeStyles from './useHomeStyles'; 
-import {
-    Heading1
-} from '../Widgets';
+import { Heading } from '../Widgets';
 
 function Home() {
 
@@ -12,7 +10,7 @@ function Home() {
 
     return (
         <div className={styles.root}>
-            <Heading1>Exercise</Heading1>
+            <Heading level={1}>Dropdown Component Challenge</Heading>
         </div>
     );
 }
