@@ -1,4 +1,4 @@
-const theme = {
+const theme: Theme = {
     fontFamily: "'Roboto', 'sans-serif'",
     fontWeights: {
         medium: 500,
@@ -11,7 +11,4 @@ const theme = {
     }
 }
 
-type Theme = typeof theme;
-
 export default theme;
-export type { Theme };

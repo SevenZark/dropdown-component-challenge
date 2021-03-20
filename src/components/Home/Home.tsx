@@ -19,16 +19,12 @@ function Home() {
     const [state, setState] = useState<State>({
         groupSelected: undefined
     });
-
-    function handleSelect(e: React.MouseEvent<HTMLElement>) {
-
-        if (!e.currentTarget) return;
-
-        e.currentTarget &&
-            setState({
-                ...state,
-                groupSelected: (e.currentTarget as HTMLElement).id
-            });
+console.log("SHTTE", state)
+    function handleSelect(value?: string) {
+        setState({
+            ...state,
+            groupSelected: value
+        });
     }
 
     return (

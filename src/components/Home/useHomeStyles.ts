@@ -1,9 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-// App
-import type { Theme } from '../theme';
-
-const useAppStyles = (theme: Theme) => ({
+const appStyles = (theme: Theme) => ({
     root: {
         color: theme.palette.text.default,
         fontFamily: theme.fontFamily,
@@ -12,4 +9,4 @@ const useAppStyles = (theme: Theme) => ({
     }
 });
 
-export default createUseStyles(useAppStyles);
+export default createUseStyles(appStyles);

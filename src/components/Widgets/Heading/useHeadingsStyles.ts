@@ -1,8 +1,4 @@
-
 import { createUseStyles } from 'react-jss';
-
-// App
-import type { Theme } from 'components/theme';
 
 const useAppStyles = (theme: Theme) => ({
     h1: {

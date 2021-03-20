@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 
 // App
 import { SelectOption } from 'components/widgets';
@@ -8,7 +8,7 @@ const selectPromptText = '-Select an option-';
 type Props = {
     id: string,
     options?: string[],
-    onSelect?: MouseEventHandler,
+    onSelect?: OptionSelectHandler,
     value?: number | string;
 }
 
@@ -17,7 +17,7 @@ type State = {
     selectedValue?: string
 }
 
-function Select({ options, value }: Props) {
+function Select({ options, onSelect, value }: Props) {
 
     const [state, setState] = useState<State>({
         isOpen: false,
@@ -29,12 +29,28 @@ function Select({ options, value }: Props) {
         isOpen: true
     });
 
+    function handleSelect(value?: string) {
+
+        setState({
+            ...state,
+            isOpen: false,
+            selectedValue: value
+        });
+
+        onSelect && onSelect(value);
+    }
+
     function Options() {
 
         if (!options || options.length === 0) return null;
 
         const optionsComponents = options?.map((option, index) => (
-            <SelectOption key={index} tabIndex={index}>
+            <SelectOption
+                key={index} 
+                onSelect={handleSelect}
+                tabIndex={index}
+                value={option}
+            >
                 {option}
             </SelectOption>
         ));
@@ -42,22 +58,20 @@ function Select({ options, value }: Props) {
         return <>{optionsComponents}</>;
     }
 
-    function SelectBody() {
-        return state.isOpen
-            ? <Options />
-            : (
-                <SelectOption
-                    onClick={handleOpen}
-                    tabIndex={0}
-                >
-                    {state.selectedValue || selectPromptText}
-                </SelectOption>
-            );
-    }
-
     return (
         <ul role="listbox">
-            <SelectBody />
+            {
+                state.isOpen
+                    ? <Options />
+                    : (
+                        <SelectOption
+                            onSelect={handleOpen}
+                            tabIndex={0}
+                        >
+                            {state.selectedValue || selectPromptText}
+                        </SelectOption>
+                    )
+            }
         </ul>
     );
 }
