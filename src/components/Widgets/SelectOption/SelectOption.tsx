@@ -5,7 +5,7 @@ import useSelectOptionStyles from './useSelectOptionStyles';
 
 type Props = {
     children: React.ReactNode;
-    onBlur?: React.FocusEventHandler<HTMLElement>;
+    onClose?: Function;
     passdownRef?: React.RefObject<HTMLLIElement>;
     onSelect?: OptionSelectHandler;
     value?: string;
@@ -14,7 +14,7 @@ type Props = {
 function SelectOption({
     children,
     passdownRef,
-    onBlur,
+    onClose,
     onSelect,
     value
 }: Props) {
@@ -25,13 +25,26 @@ function SelectOption({
         passdownRef?.current?.focus();
     }, [passdownRef]);
 
-    function handleKeyUp(e: React.KeyboardEvent<HTMLElement>) {
+    function handleKeyUp(e: React.KeyboardEvent<HTMLLIElement>) {
 
         if (e.code === 'Space' && onSelect) {
             onSelect(value);
         }
 
-console.log("FOOP", e.code);
+        if (e.code === 'Escape' && onClose) {
+            onClose();
+        }
+    }
+
+    function handleBlur(e: React.FocusEvent<HTMLLIElement>) {
+
+        const el = e?.relatedTarget as HTMLLIElement;
+        const newFocusRole = el?.getAttribute('role');
+        const newFocusIsNotAnOption = (newFocusRole !== 'option');
+
+        if (newFocusIsNotAnOption) {
+            onClose && onClose(e);
+        }
     }
 
     function handleClick(e: React.MouseEvent<HTMLElement>) {
@@ -42,7 +55,7 @@ console.log("FOOP", e.code);
         <li
             aria-selected={false}
             className={styles.root}
-            onBlur={onBlur}
+            onBlur={handleBlur}
             onClick={handleClick}
             onKeyUp={handleKeyUp}
             ref={passdownRef}

@@ -41,7 +41,7 @@ function Select({ options, onSelect }: Props) {
         onSelect && onSelect(value);
     }
 
-    const handleOptionBlur = () => setState({
+    const handleOptionClose = () => setState({
         ...state,
         isOpen: false
     });
@@ -53,7 +53,7 @@ function Select({ options, onSelect }: Props) {
         const optionsComponents = options?.map((option, index) => (
             <SelectOption
                 key={index}
-                onBlur={handleOptionBlur}
+                onClose={handleOptionClose}
                 onSelect={handleSelect}
                 passdownRef={index === 0 ? firstLiInDom : undefined}
                 value={option}
