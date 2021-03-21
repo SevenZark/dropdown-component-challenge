@@ -1,20 +1,20 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-const layoutBlockStyles = (theme: Theme) => ({
+const simpleColumnStyles = (theme: Theme) => ({
     root: {
-        display: 'inline-block'
+        marginRight: '3rem'
     }
 });
 
-const useLayoutBlockStyles = createUseStyles(layoutBlockStyles);
+const useSimpleColumnTyles = createUseStyles(simpleColumnStyles);
 
 type Props = {
     children: React.ReactNode;
 }
 
 function LayoutBlock({children}: Props) {
-    const styles = useLayoutBlockStyles();
+    const styles = useSimpleColumnTyles();
     return <div className={styles.root}>{children}</div>
 }
 

@@ -1,3 +1,7 @@
+Accessibility
+* You can tab to the select controls, and open them with the spacebar
+* Once they are open, you can tab through the options and select one with spacebar
+
 Departures from what you see in typical React example/tutorial code:
 
 * Why I don't use React.FC type

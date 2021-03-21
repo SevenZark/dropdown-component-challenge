@@ -1,4 +1,5 @@
 export { default as Heading } from './Heading';
 export { default as Select } from './Select';
 export { default as SelectOption } from './SelectOption';
-export { default as LayoutBlock } from './LayoutBlock';
+export { default as SimpleColumn} from './SimpleColumn';
+export { default as SimpleColumnContainer } from './SimpleColumnContainer';

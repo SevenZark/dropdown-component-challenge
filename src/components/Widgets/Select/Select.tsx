@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { 
+    useCallback,
+    useEffect, 
+    useState 
+} from 'react';
 import clsx from 'clsx';
 
 // App
@@ -8,9 +12,9 @@ import { SelectOption } from 'components/widgets';
 const selectPromptText = '-Select an option-';
 
 type Props = {
-    id: string;
     options?: string[];
     onSelect?: OptionSelectHandler;
+    value?: string
 }
 
 type State = {
@@ -18,12 +22,27 @@ type State = {
     selectedValue?: string;
 }
 
-function Select({ options, onSelect }: Props) {
+function Select({
+    options,
+    onSelect,
+    value
+}: Props) {
 
     const [state, setState] = useState<State>({
         isOpen: false,
-        selectedValue: undefined
+        selectedValue: value
     });
+
+    // Update local state value if changed in props.
+    // NOTE: ESLint complains about state being a missing dependency,
+    // but any attempts to please ESLint here seemed more complex 
+    // than beneficial, to me.
+    useEffect(() => {
+        setState({
+            ...state,
+            selectedValue: value
+        });
+    }, [value]);
 
     const styles = useSelectStyles();
 
