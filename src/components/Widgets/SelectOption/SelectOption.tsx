@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import clsx from 'clsx';
 
 // App
 import useSelectOptionStyles from './useSelectOptionStyles';
@@ -6,8 +7,8 @@ import useSelectOptionStyles from './useSelectOptionStyles';
 type Props = {
     children: React.ReactNode;
     isSelected?: boolean;
+    isSolo?: boolean;
     onClose?: Function;
-    passdownRef?: React.RefObject<HTMLLIElement>;
     onSelect?: OptionSelectHandler;
     value?: string;
 }
@@ -15,17 +16,13 @@ type Props = {
 function SelectOption({
     children,
     isSelected = false,
+    isSolo = false,
     onClose,
-    passdownRef,
     onSelect,
     value
 }: Props) {
 
     const styles = useSelectOptionStyles();
-
-    useEffect(() => {
-        passdownRef?.current?.focus();
-    }, [passdownRef]);
 
     function handleKeyUp(e: React.KeyboardEvent<HTMLLIElement>) {
 
@@ -38,17 +35,6 @@ function SelectOption({
         }
     }
 
-    function handleBlur(e: React.FocusEvent<HTMLLIElement>) {
-
-        const el = e?.relatedTarget as HTMLLIElement;
-        const newFocusRole = el?.getAttribute('role');
-        const newFocusIsNotAnOption = (newFocusRole !== 'option');
-
-        if (newFocusIsNotAnOption) {
-            onClose && onClose(e);
-        }
-    }
-
     function handleClick(e: React.MouseEvent<HTMLElement>) {
         onSelect && onSelect(value);
     }
@@ -56,11 +42,13 @@ function SelectOption({
     return (
         <li
             aria-selected={isSelected}
-            className={styles.root}
-            onBlur={handleBlur}
+            className={clsx(
+                styles.root,
+                isSelected && styles.selected,
+                isSolo && styles.solo
+            )}
             onClick={handleClick}
             onKeyUp={handleKeyUp}
-            ref={passdownRef}
             role="option"
             tabIndex={0}
         >

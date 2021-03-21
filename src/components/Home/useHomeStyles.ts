@@ -5,6 +5,7 @@ const appStyles = (theme: Theme) => ({
         color: theme.palette.text.default,
         fontFamily: theme.fontFamily,
         fontSize: '1rem',
+        fontWeight: theme.fontWeights.regular,
         padding: '2rem'
     }
 });

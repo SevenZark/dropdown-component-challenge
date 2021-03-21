@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import clsx from 'clsx';
 
 // App
+import useSelectStyles from './useSelectStyles';
 import { SelectOption } from 'components/widgets';
 
 const selectPromptText = '-Select an option-';
@@ -23,7 +25,7 @@ function Select({ options, onSelect }: Props) {
         selectedValue: undefined
     });
 
-    const firstLiInDom = useRef<HTMLLIElement>(null);
+    const styles = useSelectStyles();
 
     const handleOpen = () => setState({
         ...state,
@@ -56,7 +58,6 @@ function Select({ options, onSelect }: Props) {
                 isSelected={option === state.selectedValue}
                 onClose={handleOptionClose}
                 onSelect={handleSelect}
-                passdownRef={index === 0 ? firstLiInDom : undefined}
                 value={option}
             >
                 {option}
@@ -67,15 +68,17 @@ function Select({ options, onSelect }: Props) {
     }
 
     return (
-        <ul role="listbox">
+        <ul
+            className={clsx(state.isOpen && styles.open)}
+            role="listbox"
+        >
             {
                 state.isOpen
                     ? <Options />
                     : (
                         <SelectOption
-                            isSelected={Boolean(state.selectedValue)}
+                            isSolo
                             onSelect={handleOpen}
-                            passdownRef={firstLiInDom}
                         >
                             {state.selectedValue || selectPromptText}
                         </SelectOption>

@@ -5,6 +5,7 @@ import useHomeStyles from './useHomeStyles';
 import * as data from '../../data';
 import {
     Heading,
+    LayoutBlock,
     Select
 } from '../widgets';
 
@@ -28,12 +29,19 @@ function Home() {
 
     return (
         <div className={styles.root}>
+
             <Heading level={1}>Dropdown Component Challenge</Heading>
-            <Select
-                id='groups'
-                options={data.groups}
-                onSelect={handleSelect}
-            />
+
+            <LayoutBlock>
+
+                <Heading level={2}>Choose your type</Heading>
+
+                <Select
+                    id='groups'
+                    options={data.groups}
+                    onSelect={handleSelect}
+                />
+            </LayoutBlock>
         </div>
     );
 }
