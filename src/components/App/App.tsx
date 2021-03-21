@@ -6,11 +6,13 @@ import './reset.css';
 import theme from '../theme';
 import Home from '../Home';
 
-const App = () =>
-(
-  <ThemeProvider theme={theme}>
-    <Home />
-  </ThemeProvider>
-);
+function App() {
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Home />
+    </ThemeProvider>
+  );
+}
 
 export default App;

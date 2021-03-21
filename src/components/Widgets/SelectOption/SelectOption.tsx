@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // App
 import useSelectOptionStyles from './useSelectOptionStyles';
 
 type Props = {
     children: React.ReactNode;
+    onBlur?: React.FocusEventHandler<HTMLElement>;
+    passdownRef?: React.RefObject<HTMLLIElement>;
     onSelect?: OptionSelectHandler;
-    tabIndex?: number;
     value?: string;
 }
 
 function SelectOption({
     children,
+    passdownRef,
+    onBlur,
     onSelect,
-    tabIndex,
     value
 }: Props) {
 
     const styles = useSelectOptionStyles();
 
+    useEffect(() => {
+        passdownRef?.current?.focus();
+    }, [passdownRef]);
+
     function handleKeyUp(e: React.KeyboardEvent<HTMLElement>) {
-        e.code === 'Space' && onSelect && onSelect(value)
+
+        if (e.code === 'Space' && onSelect) {
+            onSelect(value);
+        }
+
+console.log("FOOP", e.code);
     }
 
-    function handleClick() {
+    function handleClick(e: React.MouseEvent<HTMLElement>) {
         onSelect && onSelect(value);
     }
 
@@ -31,10 +42,12 @@ function SelectOption({
         <li
             aria-selected={false}
             className={styles.root}
+            onBlur={onBlur}
             onClick={handleClick}
             onKeyUp={handleKeyUp}
+            ref={passdownRef}
             role="option"
-            tabIndex={tabIndex}
+            tabIndex={0}
         >
             {children}
         </li>

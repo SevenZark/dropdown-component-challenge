@@ -19,13 +19,12 @@ function Home() {
     const [state, setState] = useState<State>({
         groupSelected: undefined
     });
-console.log("SHTTE", state)
-    function handleSelect(value?: string) {
+
+    const handleSelect = (value?: string) =>
         setState({
             ...state,
             groupSelected: value
         });
-    }
 
     return (
         <div className={styles.root}>
