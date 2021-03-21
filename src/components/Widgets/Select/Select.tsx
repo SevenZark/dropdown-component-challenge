@@ -36,7 +36,8 @@ function Select({
     // Update local state value if changed in props.
     // NOTE: ESLint complains about state being a missing dependency,
     // but any attempts to please ESLint here seemed more complex 
-    // than beneficial, to me.
+    // than beneficial, to me, as they risk an infinite loop of
+    // re-renders. If I had more time I'd investigate further, though.
     useEffect(() => {
         setState({
             ...state,
