@@ -5,6 +5,7 @@ import useSelectOptionStyles from './useSelectOptionStyles';
 
 type Props = {
     children: React.ReactNode;
+    isSelected?: boolean;
     onClose?: Function;
     passdownRef?: React.RefObject<HTMLLIElement>;
     onSelect?: OptionSelectHandler;
@@ -13,8 +14,9 @@ type Props = {
 
 function SelectOption({
     children,
-    passdownRef,
+    isSelected = false,
     onClose,
+    passdownRef,
     onSelect,
     value
 }: Props) {
@@ -53,7 +55,7 @@ function SelectOption({
 
     return (
         <li
-            aria-selected={false}
+            aria-selected={isSelected}
             className={styles.root}
             onBlur={handleBlur}
             onClick={handleClick}

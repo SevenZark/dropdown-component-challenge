@@ -53,6 +53,7 @@ function Select({ options, onSelect }: Props) {
         const optionsComponents = options?.map((option, index) => (
             <SelectOption
                 key={index}
+                isSelected={option === state.selectedValue}
                 onClose={handleOptionClose}
                 onSelect={handleSelect}
                 passdownRef={index === 0 ? firstLiInDom : undefined}
@@ -72,6 +73,7 @@ function Select({ options, onSelect }: Props) {
                     ? <Options />
                     : (
                         <SelectOption
+                            isSelected={Boolean(state.selectedValue)}
                             onSelect={handleOpen}
                             passdownRef={firstLiInDom}
                         >
