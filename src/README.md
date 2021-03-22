@@ -1,5 +1,9 @@
 # My Solution: Some Notes
 
+## Additional Technologies Used
+* JSS, to create reusable CSS classes but use programmatic functionality in CSS, as well as use JSS's handy theming system. This avoids falling back on React's style prop with objects, which can bloat the size of code. This is because the style prop will create the style code for every instance of a component.
+* TypeScript, to write more maintainable code with type safety. For React, not much changes except how prop types and default props are handled, and then just making values and functions type-safe.
+
 ## Accessibility
 * Elements have aria-* and role attributes to clue in accessibility
 * You can tab to the select controls and open them with the spacebar
