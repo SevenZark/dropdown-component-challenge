@@ -7,6 +7,7 @@
 
 ## Departures from what you see in typical React example/tutorial code
 
+* Taking advantage of React 17 and the new native jsx features, I don't import React itself unless I want to reference non-default export items from it. CRA is set up to transpile JSX directly, so this isn't needed anymore.
 * I don't use React.FC type, but instead use plain functions and type the properties.
   - Because function types force variable-style function declaration, and are thus less flexible
   - Because React.FC forces children on components whether you need that or not. I think it's better to overtly declare children in a props type when a component uses children.

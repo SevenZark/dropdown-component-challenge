@@ -1,11 +1,15 @@
-import React from 'react';
+import { 
+    KeyboardEvent, 
+    MouseEvent, 
+    ReactNode 
+} from 'react';
 import clsx from 'clsx';
 
 // App
 import useSelectOptionStyles from './useSelectOptionStyles';
 
 type Props = {
-    children: React.ReactNode;
+    children: ReactNode;
     isSelected?: boolean;
     isSolo?: boolean;
     onClose?: Function;
@@ -24,7 +28,7 @@ function SelectOption({
 
     const styles = useSelectOptionStyles();
 
-    function handleKeyUp(e: React.KeyboardEvent<HTMLLIElement>) {
+    function handleKeyUp(e: KeyboardEvent<HTMLLIElement>) {
 
         if (e.code === 'Space' && onSelect) {
             onSelect(value);
@@ -35,7 +39,7 @@ function SelectOption({
         }
     }
 
-    function handleClick(e: React.MouseEvent<HTMLElement>) {
+    function handleClick(e: MouseEvent<HTMLElement>) {
         onSelect && onSelect(value);
     }
 

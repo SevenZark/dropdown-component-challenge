@@ -1,10 +1,10 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 // App
 import useHeadingsStyles from './useHeadingsStyles';
 
 type Props = {
-    children: React.ReactNode,
+    children: ReactNode,
     level: number
 }
 

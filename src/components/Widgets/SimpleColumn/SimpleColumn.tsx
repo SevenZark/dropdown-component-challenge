@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
 
 const simpleColumnStyles = (theme: Theme) => ({
@@ -10,7 +10,7 @@ const simpleColumnStyles = (theme: Theme) => ({
 const useSimpleColumnTyles = createUseStyles(simpleColumnStyles);
 
 type Props = {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 function LayoutBlock({children}: Props) {
